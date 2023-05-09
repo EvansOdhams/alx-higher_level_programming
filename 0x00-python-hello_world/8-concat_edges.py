@@ -1,2 +1,7 @@
 #!/usr/bin/python3
-print("{}".format("object-oriented programming with Python"))
+print("".join([
+    "object-oriented programming",
+    " with ",
+    "Python",
+    "\n"
+])[::-1])
