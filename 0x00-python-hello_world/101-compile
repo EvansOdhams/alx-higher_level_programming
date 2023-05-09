@@ -1,11 +1,6 @@
-#!/usr/bin/env python3
 import py_compile
 import os
 
-pyfile = os.environ.get('PYFILE')
-
-if pyfile:
-py_compile.compile(pyfile, cfile=pyfile + 'c')
-print(f"Compiled {pyfile} to {pyfile}c")
-else:
-print("PYFILE environment variable not set.")
+pyfile = os.getenv('PYFILE')
+pycfile = pyfile + 'c'
+py_compile.compile(pyfile, cfile=pycfile, optimize=2)
