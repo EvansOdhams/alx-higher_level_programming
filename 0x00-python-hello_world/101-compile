@@ -1,3 +1,15 @@
 #!/bin/bash
-PYFILE="main.py"
-python3 -m compileall -b $PYFILE && python3 -m py_compile $PYFILE
+if [ -z "$PYFILE" ]
+then
+    echo "Error: PYFILE environment variable not set"
+    exit 1
+fi
+
+if [ ! -f "$PYFILE" ]
+then
+    echo "Error: File $PYFILE not found"
+    exit 1
+fi
+
+pyc_file="${PYFILE}c"
+python3 -m compileall -b "$PYFILE" && mv "${PYFILE}__pycache__/${pyc_file}" "./${pyc_file}"
