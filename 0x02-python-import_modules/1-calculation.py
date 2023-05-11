@@ -1,15 +1,24 @@
 #!/usr/bin/python3
-from calculator_1 import add, sub, mul, div
 
-a = 10
-b = 5
+"""
+Import functions from calculator_1.py and print their results
+"""
 
-add_res = add(a, b)
-sub_res = sub(a, b)
-mul_res = mul(a, b)
-div_res = div(a, b)
+if __name__ == "__main__":
+    from calculator_1 import add, sub, mul, div
 
-print("{} + {} = {}".format(a, b, add_res))
-print("{} - {} = {}".format(a, b, sub_res))
-print("{} * {} = {}".format(a, b, mul_res))
-print("{} / {} = {}".format(a, b, div_res))
+    # Define values for a and b
+    a = 10
+    b = 5
+
+    # Print sum of a and b
+    print("{} + {} = {}".format(a, b, add(a, b)))
+
+    # Print difference of a and b
+    print("{} - {} = {}".format(a, b, sub(a, b)))
+
+    # Print product of a and b
+    print("{} * {} = {}".format(a, b, mul(a, b)))
+
+    # Print quotient of a and b
+    print("{} / {} = {}".format(a, b, div(a, b))))
