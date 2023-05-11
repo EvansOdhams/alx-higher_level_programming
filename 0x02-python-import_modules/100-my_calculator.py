@@ -1,36 +1,19 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 
-import sys
+if name == "main":
+"""Handle basic arithmetic operations."""
 from calculator_1 import add, sub, mul, div
+import sys
 
-OPERATORS = {
-    '+': add,
-    '-': sub,
-    '*': mul,
-    '/': div,
-}
-
-def usage_and_exit():
-    print('Usage: ./100-my_calculator.py <a> <operator> <b>')
+if len(sys.argv) - 1 != 3:
+    print("Usage: ./100-my_calculator.py <a> <operator> <b>")
     sys.exit(1)
 
-def unknown_operator_and_exit():
-    print('Unknown operator. Available operators: +, -, * and /')
+ops = {"+": add, "-": sub, "*": mul, "/": div}
+if sys.argv[2] not in list(ops.keys()):
+    print("Unknown operator. Available operators: +, -, * and /")
     sys.exit(1)
 
-if __name__ == '__main__':
-    if len(sys.argv) != 4:
-        usage_and_exit()
-
-    a, operator, b = sys.argv[1:]
-    if operator not in OPERATORS:
-        unknown_operator_and_exit()
-
-    try:
-        a = int(a)
-        b = int(b)
-    except ValueError:
-        usage_and_exit()
-
-    result = OPERATORS[operator](a, b)
-    print(f'{a} {operator} {b} = {result}')
+a = int(sys.argv[1])
+b = int(sys.argv[3])
+print("{} {} {} = {}".format(a, sys.argv[2], b, ops[sys.argv[2]](a, b)))
