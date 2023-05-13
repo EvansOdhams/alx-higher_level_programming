@@ -33,40 +33,29 @@ return (*head);
 */
 int is_palindrome(listint_t **head)
 {
-listint_t *tmp, *rev, *mid;
-size_t size = 0, i;
+listint_t *slow = *head, *fast = *head, *prev = NULL, *tmp;
 
-if (*head == NULL || (*head)->next == NULL)
-return (1);
-
-tmp = *head;
-while (tmp)
+/* Traverse the linked list to find thefirst half of the list */
+while (fast && fast->next)
 {
-size++;
-tmp = tmp->next;
+fast = fast->next->next;
+tmp = slow->next;
+slow->next = prev;
+prev = slow;
+slow = tmp;
 }
+/* If the linked list has an odd number of nodes,to the next node */
+if (fast)
+slow = slow->next;
 
-tmp = *head;
-for (i = 0; i < (size / 2) - 1; i++)
-tmp = tmp->next;
-
-if ((size % 2) == 0 && tmp->n != tmp->next->n)
-return (0);
-
-tmp = tmp->next->next;
-rev = reverse_listint(&tmp);
-mid = rev;
-
-tmp = *head;
-while (rev)
+/* Compare the first half of the list with the second half of the list */
+while (slow)
 {
-if (tmp->n != rev->n)
+if (prev->n != slow->n)
 return (0);
-tmp = tmp->next;
-rev = rev->next;
+prev = prev->next;
+slow = slow->next;
 }
-reverse_listint(&mid);
 
 return (1);
 }
-
