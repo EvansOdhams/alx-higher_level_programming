@@ -4,6 +4,7 @@
 
 import math
 
+
 class MagicClass:
     """Represent a circle."""
 
@@ -15,13 +16,13 @@ class MagicClass:
         """
         self.__radius = 0  # Initialize the private attribute __radius
         if type(radius) is not int and type(radius) is not float:
-            raise TypeError("radius must be a number")  # Check if the radius is a number
+            raise TypeError("radius must be a number")  # Check if the
         self.__radius = radius  # Set the value of __radius
 
     def area(self):
         """Return the area of the MagicClass."""
-        return self.__radius ** 2 * math.pi  # Calculate and return the area
+        return self.__radius ** 2 * math.pi  # Calculate and return
 
     def circumference(self):
         """Return the circumference of the MagicClass."""
-        return 2 * math.pi * self.__radius  # Calculate and return the circumference
+        return 2 * math.pi * self.__radius  # Calculate and return
