@@ -60,7 +60,7 @@ class Square:
         """Return a string representation of the square."""
         if self._size == 0:
             return ""
-        
+
         square_str = ""
         for _ in range(self._position[1]):
             square_str += "\n"
