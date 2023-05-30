@@ -1,61 +1,102 @@
 #!/usr/bin/python3
-"""Define the class as a Square""""
+"""Define a class Square."""
 
 
 class Square:
-    """Class that defines a square."""
+    """Represent a square."""
 
     def __init__(self, size=0):
-        """Initialize a square object.
+        """Initialize a new square.
 
         Args:
-            size (float or int): The size of the square.
+            size (int): The size of the new square.
         """
-        self.size = size
+        self._size = size
 
     @property
     def size(self):
-        """Get or set the size of the square."""
+        """Get the current size of the square."""
         return self._size
 
     @size.setter
     def size(self, value):
-        if not isinstance(value, (float, int)):
-            raise TypeError("size must be a number")
+        """Set the size of the square.
+
+        Args:
+            value (int): The new size of the square.
+        """
+        if not isinstance(value, int):
+            raise TypeError("size must be an integer")
         elif value < 0:
             raise ValueError("size must be >= 0")
         self._size = value
 
     def area(self):
-        """Calculate and return the area of the square."""
+        """Return the area of the square."""
         return self._size ** 2
 
     def __eq__(self, other):
-        """Compare if two squares have equal areas."""
-        if isinstance(other, Square):
-            return self.area() == other.area()
-        return False
+        """Check if two squares are equal in area.
+
+        Args:
+            other (Square): The other square to compare.
+
+        Returns:
+            bool: True if the squares are equal in area, False otherwise.
+        """
+        return self.area() == other.area()
 
     def __ne__(self, other):
-        """Compare if two squares have different areas."""
-        return not self.__eq__(other)
+        """Check if two squares are not equal in area.
+
+        Args:
+            other (Square): The other square to compare.
+
+        Returns:
+            bool: True if the squares are not equal in area, False otherwise.
+        """
+        return self.area() != other.area()
 
     def __lt__(self, other):
-        """Compare if the area of self is less than the area of square."""
-        if isinstance(other, Square):
-            return self.area() < other.area()
-        raise TypeError("unsupported operand type(s) for <")
+        """Check if the current square is smaller than the other square.
+
+        Args:
+            other (Square): The other square to compare.
+
+        Returns:
+            bool: True if the current square is smaller, False otherwise.
+        """
+        return self.area() < other.area()
 
     def __le__(self, other):
-        """Compare if the area of self is less than of other square."""
-        return self.__lt__(other) or self.__eq__(other)
+        """Check if the current square is smaller or equal to the other square.
+
+        Args:
+            other (Square): The other square to compare.
+
+        Returns:
+            bool: True if the current square or equal, False otherwise.
+        """
+        return self.area() <= other.area()
 
     def __gt__(self, other):
-        """Compare if the area of self is greater than square."""
-        if isinstance(other, Square):
-            return self.area() > other.area()
-        raise TypeError("unsupported operand type(s) for >")
+        """Check if the current square is greater than the other square.
+
+        Args:
+            other (Square): The other square to compare.
+
+        Returns:
+            bool: True if the current square is greater, False otherwise.
+        """
+        return self.area() > other.area()
 
     def __ge__(self, other):
-        """Compare if the area of self is greater than square."""
-        return self.__gt__(other) or self.__eq__(other)
+        """Check if the current square is greater or equal to the other square.
+
+        Args:
+            other (Square): The other square to compare.
+
+        Returns:
+            bool: True if the curruare is greater or equal, False otherwise.
+        """
+        return self.area() >= other.area()
