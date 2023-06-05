@@ -28,17 +28,19 @@ def is_safe(board, row, col):
 
 
 def solve_nqueens(n):
-    def backtrack(board, row):
+    def backtrack(board, row, columns):
         if row == n:
             # Found a valid solution
-            solutions.append(["".join(row) for row in board])
+            solutions.append([[i, columns[i]] for i in range(n)])
             return
 
         for col in range(n):
             if is_safe(board, row, col):
                 board[row][col] = 'Q'
-                backtrack(board, row + 1)
+                columns.append(col)  # Track the column index
+                backtrack(board, row + 1, columns)
                 board[row][col] = '.'
+                columns.pop()  # Remove the column index
 
     if not isinstance(n, int):
         print("N must be a number")
@@ -50,12 +52,10 @@ def solve_nqueens(n):
 
     board = [['.' for _ in range(n)] for _ in range(n)]
     solutions = []
-    backtrack(board, 0)
+    backtrack(board, 0, [])  # Pass an empty list for columns
 
     for solution in solutions:
-        for row in solution:
-            print(row)
-        print()
+        print(solution)
 
 
 if __name__ == '__main__':
