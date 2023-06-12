@@ -1,4 +1,3 @@
-guillaume@ubuntu:~/0x0A$ cat tests/1-my_list.txt
 #!/usr/bin/python3
 MyList = __import__('1-my_list').MyList
 
