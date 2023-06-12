@@ -1,33 +1,14 @@
-#!/bin/usr/python3
+#!/usr/bin/python3
+"""Defines a class MyInt that inherits from int."""
 
 
 class MyInt(int):
-    """
-    Represents a rebel integer.
-    """
+    """Invert int operators == and !=."""
 
-    def __eq__(self, other):
-        """
-        Checks if the value of the MyInt object is not equal to
-        the other value.
+    def __eq__(self, value):
+        """Override == opeartor with != behavior."""
+        return self.real != value
 
-        Args:
-            other: The value to compare with.
-
-        Returns:
-            bool: True if values are not equal, False otherwise.
-        """
-        return super().__ne__(other)
-
-    def __ne__(self, other):
-        """
-        Checks if the value of the MyInt object is equal to
-        the other value.
-
-        Args:
-            other: The value to compare with.
-
-        Returns:
-            bool: True if values are equal, False otherwise.
-        """
-        return super().__eq__(other)
+    def __ne__(self, value):
+        """Override != operator with == behavior."""
+        return self.real == value
