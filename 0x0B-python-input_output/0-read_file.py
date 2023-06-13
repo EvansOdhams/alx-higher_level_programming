@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 def read_file(filename=""):
-    """Reads a text file (UTF-8 encoded) and prints its content to stdout."""
-    with open(filename, "r", encoding="UTF-8") as f:
+    with open("tests/" + filename, "r", encoding="utf-8") as f:
         print(f.read(), end="")
+
+if __name__ == "__main__":
+    read_file("my_file_0.txt")
