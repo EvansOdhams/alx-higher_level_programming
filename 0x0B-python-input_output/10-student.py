@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-# 12-student.py
-# Carlos Barros <1543@holbertonschool.com>
 """ File name : 12-student.py
 """
 
