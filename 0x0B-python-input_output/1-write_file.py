@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-File name: 4-write_file.py
+Add a class
 """
 
 
