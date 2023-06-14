@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-# 0-read_file.py
-# Carlos Barros <1543@holbertonschool.com>
+
+
 """ File name : 0-read_file.py
     Use the with statement
     It is not allowed to import any module
