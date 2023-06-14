@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-# 5-to_json_string.py
-# Brennan D Baraban <375@holbertonschool.com>
 """Defines a string-to-JSON function."""
 import json
 
