@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-# 2-append_write.py
-# John Doe <johndoe@example.com>
 """ File name: 2-append_write.py
 """
 
