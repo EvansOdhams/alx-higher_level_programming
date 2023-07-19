@@ -1,7 +1,6 @@
--- 1-create_user.sql
+sudo mysql -u root
 
-CREATE USER IF NOT EXISTS 'user_0d_1'@'localhost' IDENTIFIED BY 'user_0d_1_pwd';
-
-GRANT ALL PRIVILEGES ON *.* TO 'user_0d_1'@'localhost' WITH GRANT OPTION;
-
+-- Now you are in the MySQL shell
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'Diplomas19' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
+EXIT;
