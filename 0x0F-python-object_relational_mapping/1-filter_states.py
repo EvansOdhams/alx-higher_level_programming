@@ -1,32 +1,39 @@
 #!/usr/bin/python3
-"""
-Lists all states with a name starting with N from the database hbtn_0e_0_usa.
-Usage: ./1-filter_states.py <mysql username> \
-                            <mysql password> \
-                            <database name>
-"""
-
-import sys
 import MySQLdb
 
+def filter_states(username, password, database):
+  """
+  Filters states from the database hbtn_0e_0_usa.
+
+  Args:
+    username: The MySQL username.
+    password: The MySQL password.
+    database: The MySQL database name.
+
+  Returns:
+    A list of states with a name starting with N (upper N).
+  """
+
+  connection = MySQLdb.connect(host="localhost", user=username, password=password, db=database)
+  cursor = connection.cursor()
+
+  query = "SELECT id, name FROM states WHERE name LIKE 'N%' ORDER BY id ASC"
+  cursor.execute(query)
+
+  states = []
+  for row in cursor:
+    states.append((row[0], row[1]))
+
+  connection.close()
+
+  return states
+
 if __name__ == "__main__":
-    # Check if all arguments are provided
-    if len(sys.argv) != 4:
-        print("Usage: {} username password database".format(sys.argv[0]))
-        sys.exit(1)
+  username = input("Enter MySQL username: ")
+  password = input("Enter MySQL password: ")
+  database = input("Enter MySQL database name: ")
 
-    # Connect to MySQL server
-    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
+  states = filter_states(username, password, database)
 
-    # Create a cursor object to interact with the database
-    c = db.cursor()
-
-    # Execute the SQL query to retrieve and filter states
-    c.execute("SELECT * FROM `states` WHERE `name` LIKE 'N%' ORDER BY `id`")
-
-    # Print the results
-    [print(state) for state in c.fetchall()]
-
-    # Clean up
-    c.close()
-    db.close()
+  for state in states:
+    print(state)
