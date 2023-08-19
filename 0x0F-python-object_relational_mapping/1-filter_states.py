@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """
-Script that lists all states with a name starting with N (upper N)
-from the database hbtn_0e_0_usa.
+Lists all states with a name starting with N from the database hbtn_0e_0_usa.
+Usage: ./1-filter_states.py <mysql username> \
+                            <mysql password> \
+                            <database name>
 """
 
 import sys
@@ -13,31 +15,18 @@ if __name__ == "__main__":
         print("Usage: {} username password database".format(sys.argv[0]))
         sys.exit(1)
 
-    # Get command-line arguments
-    username = sys.argv[1]
-    password = sys.argv[2]
-    database = sys.argv[3]
-
     # Connect to MySQL server
-    db = MySQLdb.connect(host="localhost",
-                         port=3306,
-                         user=username,
-                         passwd=password,
-                         db=database)
+    db = MySQLdb.connect(user=sys.argv[1], passwd=sys.argv[2], db=sys.argv[3])
 
     # Create a cursor object to interact with the database
-    cursor = db.cursor()
+    c = db.cursor()
 
-    # Execute the SQL query to retrieve states starting with 'N'
-    cursor.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
-
-    # Fetch all rows from the result
-    rows = cursor.fetchall()
+    # Execute the SQL query to retrieve and filter states
+    c.execute("SELECT * FROM `states` WHERE `name` LIKE 'N%' ORDER BY `id`")
 
     # Print the results
-    for row in rows:
-        print(row)
+    [print(state) for state in c.fetchall()]
 
     # Clean up
-    cursor.close()
+    c.close()
     db.close()
