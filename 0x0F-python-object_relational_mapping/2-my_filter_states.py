@@ -1,42 +1,21 @@
 #!/usr/bin/python3
 """
-Lists all states from the database hbtn_0e_0_usa that match the given state name.
+Filter states by user input
+It takes in an argument and displays all values in the states table
 """
 
-import sys
 import MySQLdb
+from sys import argv
 
 if __name__ == "__main__":
-    if len(sys.argv) != 5:
-        print("Usage: {} <mysql username> <mysql password> <database name> <state name searched>".format(sys.argv[0]))
-        sys.exit(1)
-
-    mysql_username = sys.argv[1]
-    mysql_password = sys.argv[2]
-    db_name = sys.argv[3]
-    state_name = sys.argv[4]
-
-    try:
-        db = MySQLdb.connect(
-            host="localhost",
-            port=3306,
-            user=root,
-            passwd=Diplomas19,
-            db=db_name,
-            charset="utf8"
-        )
-
-        cursor = db.cursor()
-        cursor.execute("SELECT * FROM `states` WHERE BINARY `name` = %s ORDER BY `id`", (state_name,))
-        states = cursor.fetchall()
-
-        for state in states:
-            print(state)
-
-    except MySQLdb.Error as e:
-        print("MySQL Error:", e)
-    finally:
-        if cursor:
-            cursor.close()
-        if db:
-            db.close()
+    db = MySQLdb.connect(host="localhost",
+                         user=argv[1], passwd=argv[2], db=argv[3])
+    query = "SELECT * FROM states\
+             WHERE states.name LIKE BINARY '{}'\
+             ORDER BY states.id ASC".format(argv[4])
+    cursor = db.cursor()
+    cursor.execute(query)
+    for state in cursor.fetchall():
+        print(state)
+    cursor.close()
+    db.close()
