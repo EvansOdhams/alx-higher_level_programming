@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Get the URL from the command line argument
-url=$1
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 <URL>"
+    exit 1
+fi
 
-# Set the header variable X-School-User-Id with the value 98
-header="X-School-User-Id: 98"
+url="$1"
 
-# Send the GET request to the URL with the header variable
-curl -H "$header" "$url"
+curl -s -H "X-School-User-Id: 98" "$url"
