@@ -1,4 +1,3 @@
 #!/bin/bash
-# Sends a GET request to a URL and displays the body of the response
-
-curl -s "$1" -H "X-School-User-Id: 98"
+# script to post data (url-encoded) to a server
+curl -s -d "email=evansodhams@gmail.com&subject=I%20will%20always%20be%20here%20for%20PLD" -X POST "$1"
