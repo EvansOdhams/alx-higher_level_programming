@@ -1,3 +1,10 @@
 #!/bin/bash
-#takes in a URL as an argument and displays the body of the response
-curl -s --header X-HolbertonSchool-User-Id:98 "$1"
+
+# Get the URL from the command line argument
+url=$1
+
+# Set the header variable X-School-User-Id with the value 98
+header="X-School-User-Id: 98"
+
+# Send the GET request to the URL with the header variable
+curl -H "$header" "$url"
