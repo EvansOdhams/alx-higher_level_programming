@@ -1,21 +1,11 @@
+#!/usr/bin/node
+
 const fs = require('fs');
 
-// Check if the correct number of arguments are provided
-if (process.argv.length !== 3) {
-  console.error('Usage: node 0-readme.js <file-path>');
-  process.exit(1);
-}
-
-// Get the file path from the command-line arguments
-const filePath = process.argv[2];
-
-// Read the content of the file in utf-8 encoding
-fs.readFile(filePath, 'utf-8', (err, data) => {
+fs.readFile(process.argv[2], 'utf8', function (err, data) {
   if (err) {
-    // If an error occurred during reading, print the error object
-    console.error(err);
+    console.log(err);
   } else {
-    // Print the content of the file
-    console.log(data);
+    process.stdout.write(data);
   }
 });
